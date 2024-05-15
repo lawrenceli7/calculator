@@ -81,3 +81,28 @@ function calculate() {
 function updateDisplay(value) {
     document.getElementById('display').value = value;
 }
+
+document.addEventListener('keydown', function (event) {
+    const key = event.key;
+
+    if ((key >= '0' && key <= '9') || key === '.') {
+        appendNumber(key);
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        setOperator(key);
+    } else if (key === 'Enter' || key === '=') {
+        calculate();
+    } else if (key === 'Backspace') {
+        backspace();
+    } else if (key === 'c' || key === 'C') {
+        clearDisplay();
+    }
+});
+
+document.addEventListener('keyup', function (event) {
+    const key = event.key;
+
+    if (key === 'Enter' || key === '=') {
+        event.preventDefault();
+    }
+});
+
